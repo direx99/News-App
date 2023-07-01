@@ -9,50 +9,68 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        VStack{
-            HStack{
-                VStack(alignment: .leading){
-                    Text("Sunday, July 2nd")
-                        .foregroundColor(.white)
-                        .font(.system(size: 13)).fontWeight(.medium)
-                        .opacity(0.5)
-                    Text("Daily feed")
-                        .foregroundColor(.white)
-                        .font(.system(size: 30)).fontWeight(.medium)
+            ScrollView(showsIndicators: false){
                 
+                
+                VStack{
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text("Sunday, July 2nd")
+                                .foregroundColor(.white)
+                                .font(.system(size: 13)).fontWeight(.medium)
+                                .opacity(0.5)
+                            
+                            Text("Daily feed")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30)).fontWeight(.medium)
+                            
+                        }
+                        Spacer()
+                        
+                        Image("User")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45)
+                            .cornerRadius(50)
+                    }
+                    HStack{
+                        
+                        NewsTypeSelected()
+                        Spacer()
+                        NewsType()
+                        Spacer()
+                        NewsType()
+                        
+                    }
+                    .padding(.top,10)
+                    
+                    HStack{
+                        Spacer()
+                    }
+                    .frame(height: 6)
+                    .background(Color("Black1"))
+                    .padding(.top)
+                    .padding(.horizontal,-40)
+                    
+                    PostFeed()
+                    
+                    
+                    
+                    Spacer()
                 }
-                .padding(.top)
-                Spacer()
-            }
-            HStack{
-                
-                NewsTypeSelected()
-                Spacer()
-                NewsType()
-                Spacer()
-                NewsType()
+                .padding()
                 
             }
-            .padding(.top,10)
-            
-            HStack{
-                Spacer()
-            }
-            .frame(height: 6)
-            .background(Color("Black1"))
             .padding(.top)
-            .padding(.horizontal,-40)
+            .background(Color("BgColor"))
            
-                PostFeed()
-            
 
-
-            Spacer()
-        }
-        .padding()
-        .background(Color("BgColor"))
+        
+        
     }
+    
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
@@ -90,7 +108,7 @@ struct NewsType : View{
 
 struct PostFeed : View{
     var body: some View{
-        ScrollView(showsIndicators: false){
+       VStack{
             HStack{
                 Image("trend")
                     .resizable()
@@ -134,6 +152,8 @@ struct Post : View{
                     Image("news")
                         .resizable()
                         .scaledToFit()
+                        
+
                 }
                 .frame(width: 80,height: 80)
                 .background(Color.white)
@@ -141,7 +161,7 @@ struct Post : View{
                 
                 VStack(alignment:.leading,spacing: 11){
                     HStack{
-                        Text("r/worldnews • 12h")
+                        Text("r/worldnews  • u/dinith  • 12h")
                             .foregroundColor(.white)
                             .font(.system(size: 13))
                             .opacity(0.5)
@@ -151,6 +171,7 @@ struct Post : View{
                             .font(.system(size: 17))
                             .opacity(0.5)
                             .padding(.trailing,-20)
+                        
                     }
                     Text("Australia to deport Kiwi criminal who has lived there since he was 9.")
                         .foregroundColor(.white)
@@ -177,6 +198,7 @@ struct Post : View{
                     .font(.system(size: 14))
                     .opacity(0.5)
                     .padding(.leading)
+                
                 Text("Save")
                     .foregroundColor(.white)
                     .font(.system(size: 14))
@@ -254,3 +276,5 @@ struct DottedLine: View{
         .opacity(0.1)
     }
 }
+
+
