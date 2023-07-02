@@ -10,10 +10,14 @@ import SwiftUI
 struct GroupPost: View {
     @State var joinGroup: Bool = false
     @State var moreBtn: Bool = false
+    @State var DetailView: Bool = false
+
 
     var body: some View {
-        ScrollView{
+        ScrollView(showsIndicators: false){
+            GroupView()
             VStack{
+
                 HStack{
                     Group{
                         Image(systemName: "chevron.left")
@@ -42,7 +46,14 @@ struct GroupPost: View {
                 .opacity(0.2)
                 .padding(.horizontal,-20)
                 .padding(.vertical,15)
-                GroupAbout(joinGroup: $joinGroup)
+                GroupAbout(joinGroup: $joinGroup,DetailView:$DetailView)
+                HStack{
+                    Spacer()
+                }
+                .frame(height: 6)
+                .background(Color("Black1"))
+                .padding(.top)
+                .padding(.horizontal,-20)
                 PostFeed()
 
                 
@@ -62,6 +73,8 @@ struct GroupPost: View {
 
 struct GroupPost_Previews: PreviewProvider {
     @State static var joinGroup = false
+    @State static var DetailView = false
+
     
     static var previews: some View {
         GroupPost()
@@ -70,6 +83,7 @@ struct GroupPost_Previews: PreviewProvider {
 struct GroupAbout: View{
     
     @Binding  var joinGroup : Bool
+    @Binding  var DetailView : Bool
 
 
     var body: some View{
@@ -90,15 +104,25 @@ struct GroupAbout: View{
                     .cornerRadius(100)
                 }
 
+                Button {
+                    DetailView = !DetailView
+                } label: {
+                    VStack{
+                        Image(systemName: "ipad.and.iphone")
+                            .font(.system(size: 40)).fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 100,height: 100)
+                    .background(Color(hex: "#F97C4B"))
+                    .cornerRadius(100)}
+                .sheet(isPresented: $DetailView) {
+                    GroupView()
+//                      .presentationDetents([.height(550)])
+
+                    
+                    
+                        }
                 
-                VStack{
-                    Image(systemName: "ipad.and.iphone")
-                        .font(.system(size: 40)).fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
-                .frame(width: 100,height: 100)
-                .background(Color(hex: "#F97C4B"))
-                .cornerRadius(100)
                 Button {
                     joinGroup = !joinGroup
                 } label: {
@@ -168,13 +192,7 @@ struct GroupAbout: View{
             .frame(alignment: .center)
             .padding(.vertical,15)
             
-            HStack{
-                Spacer()
-            }
-            .frame(height: 6)
-            .background(Color("Black1"))
-            .padding(.top)
-            .padding(.horizontal,-20)
+           
             
         }
         
@@ -184,43 +202,150 @@ struct GroupAbout: View{
 
 
 
-extension Color {
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let r, g, b, a: Double
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (r, g, b, a) = (
-                Double((int >> 8) & 0xF) / 15,
-                Double((int >> 4) & 0xF) / 15,
-                Double((int >> 0) & 0xF) / 15,
-                1
-            )
-        case 6: // RGB (24-bit)
-            (r, g, b, a) = (
-                Double((int >> 16) & 0xFF) / 255,
-                Double((int >> 8) & 0xFF) / 255,
-                Double((int >> 0) & 0xFF) / 255,
-                1
-            )
-        case 8: // ARGB (32-bit)
-            (r, g, b, a) = (
-                Double((int >> 16) & 0xFF) / 255,
-                Double((int >> 8) & 0xFF) / 255,
-                Double((int >> 0) & 0xFF) / 255,
-                Double((int >> 24) & 0xFF) / 255
-            )
-        default:
-            (r, g, b, a) = (1, 1, 1, 1)
+struct GroupInfo : View{
+    var body: some View{
+        VStack{
+            
+            HStack(spacing:15){
+                
+                
+                    VStack{
+                        Image(systemName: "ipad.and.iphone")
+                            .font(.system(size: 40)).fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 100,height: 100)
+                    .background(Color(hex: "#F97C4B"))
+                    .cornerRadius(100)
+                       
+                }
+            .padding(.top)
+            }
+            .padding(.vertical,5)
+            Text("Technologies")
+                .font(.system(size: 20)).fontWeight(.medium)
+                .foregroundColor(.white)
+                .opacity(0.9)
+                .padding(.bottom,5)
+            HStack{
+                Text("38K")
+                    .font(.system(size: 13)).fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .opacity(0.9)
+                Text("members  / ")
+                    .font(.system(size: 13)).fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .opacity(0.5)
+                Text("120")
+                    .font(.system(size: 13)).fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .opacity(0.9)
+                Text("online")
+                    .font(.system(size: 13)).fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .opacity(0.5)
+            }
+            HStack(){
+               
+                Text("Welcome to the Technology Enthusiasts subreddit! Join our community of tech-savvy individuals as we explore the exciting world of technology together. Whether you're a seasoned expert or a curious beginner, this group is the perfect place to discuss the latest gadgets, software, AI, cybersecurity, and everything tech-related. Share your insights, ask questions, and engage in lively discussions about the ever-evolving landscape of technology.")
+                
+                    
+                    .font(.system(size: 14))
+                    .foregroundColor(Color("TextGray"))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal,40)
+
+                   
+              
+               
+            }
+            .frame(alignment: .center)
+            .padding(.vertical,15)
+            
+           
+            
         }
-        self.init(
-            .sRGB,
-            red: r,
-            green: g,
-            blue: b,
-            opacity: a
-        )
+    }
+
+
+
+
+struct GroupView : View{
+   
+
+    var body: some View{
+        VStack{
+            HStack{
+            }
+            .frame(height: 6)
+            .frame(width: 100)
+            .background(Color("Gray"))
+            .cornerRadius(100)
+            .padding()
+            
+           
+            
+            
+            
+            GroupInfo()
+            HStack(spacing:-10){
+                Image("u5")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32)
+                    .cornerRadius(40)
+                Image("u3")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32)
+                    .cornerRadius(40)
+                Image("u2")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32)
+                    .cornerRadius(40)
+                Image("u4")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32)
+                    .cornerRadius(40)
+                Image("u1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32)
+                    .cornerRadius(40)
+                Image("u6")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32)
+                    .cornerRadius(40)
+            }
+            
+            
+            Spacer()
+            
+            HStack{
+                Image(systemName: "link")
+                Spacer()
+                Text("https://www.reddit.com/t/television/")
+                    .foregroundColor(.white)
+
+                   
+                
+                
+                
+                    
+            }
+            .padding(.horizontal,10)
+            .padding(10)
+            .background(Color.init(hex: "2F303D"))
+            
+            .cornerRadius(10)
+            .padding()
+
+        }
+        .background(Color("BgColor"))
+
     }
 }
+
