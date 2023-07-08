@@ -15,7 +15,6 @@ struct GroupPost: View {
 
     var body: some View {
         ScrollView(showsIndicators: false){
-            GroupView()
             VStack{
 
                 HStack{
@@ -28,9 +27,25 @@ struct GroupPost: View {
                             moreBtn = !moreBtn
                         } label: {
                             Image(systemName: "ellipsis")
+                            
+                                .sheet(isPresented: $moreBtn) {
+                                    UserView()
+                                        
+                                    
+                                        
+                                        
+                                                       
+                                        
+                                        .presentationDetents([.height(400)])
+                                    
+                                        
+                                }
+                                
+
                            
 
                         }
+                        
 
                     }
                     .font(.system(size: 18)).fontWeight(.medium)
@@ -65,11 +80,12 @@ struct GroupPost: View {
             .padding(.horizontal)
         }
         .padding(.top,10)
-        .background(Color("BgColor"))
+        .background(Color(moreBtn ? "dark" : "BgColor"))
         .blur(radius: moreBtn ? 7 : 0.0)
 
     }
 }
+
 
 struct GroupPost_Previews: PreviewProvider {
     @State static var joinGroup = false
@@ -344,7 +360,7 @@ struct GroupView : View{
             .padding()
 
         }
-        .background(Color("BgColor"))
+        
 
     }
 }
