@@ -23,28 +23,57 @@ struct GroupPost: View {
                         Spacer()
                         Text("r/technologies")
                         Spacer()
-                        Button {
-                            moreBtn = !moreBtn
-                        } label: {
-                            Image(systemName: "ellipsis")
-                            
-                                .sheet(isPresented: $moreBtn) {
-                                    UserView()
-                                        
-                                    
-                                        
-                                        
-                                                       
-                                        
-                                        .presentationDetents([.height(400)])
-                                    
-                                        
-                                }
+                        if #available(iOS 16.4, *) {
+                            Button {
+                                moreBtn = !moreBtn
+                            } label: {
+                                Image(systemName: "ellipsis")
                                 
+                                    .sheet(isPresented: $moreBtn) {
+                                        UserView()
+                                            
+                                        
+                                            
+                                            
+                                                           
+                                            
+                                            .presentationDetents([.height(400)])
 
-                           
+                                            .presentationCornerRadius(40)
+                                        
+                                            
+                                    }
+                                    
 
-                        }
+                               
+
+                            }
+                                } else {
+                                    Button {
+                                        moreBtn = !moreBtn
+                                    } label: {
+                                        Image(systemName: "ellipsis")
+                                        
+                                            .sheet(isPresented: $moreBtn) {
+                                                UserView()
+                                                    
+                                                
+                                                    
+                                                    
+                                                                   
+                                                    
+                                                    .presentationDetents([.height(400)])
+
+                                                
+                                                    
+                                            }
+                                            
+
+                                       
+
+                                    }
+                                }
+                        
                         
 
                     }
