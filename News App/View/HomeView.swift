@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var viewModel:HomeModelView
+
     var body: some View {
         NavigationStack{
             ScrollView(showsIndicators: false){
@@ -74,8 +76,9 @@ struct HomeView: View {
 
 
 struct HomeView_Previews: PreviewProvider {
+
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: HomeModelView())
     }
 }
 
