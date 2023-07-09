@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @StateObject var viewModel:HomeModelView
+
 
     var body: some View {
         NavigationStack{
@@ -55,7 +57,8 @@ struct HomeView: View {
                     .padding(.top)
                     .padding(.horizontal,-40)
                     
-                    PostFeed()
+                    PostFeedView(viewModel: viewModel)
+                    
                     
                     
                     
@@ -66,7 +69,7 @@ struct HomeView: View {
             }
             .padding(.top)
             .background(Color("BgColor"))
-            
+
             
             
         }
@@ -110,145 +113,6 @@ struct NewsType : View{
     }
 }
 
-struct PostFeed : View{
-    var body: some View{
-       VStack{
-            HStack{
-                Image("trend")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20)
-                Text("Popular posts")
-                    .foregroundColor(.white)
-                    .font(.system(size: 15)).fontWeight(.medium)
-                    .opacity(0.5)
-                Image(systemName: "chevron.down")
-                    .foregroundColor(.white)
-                    .opacity(0.5)
-                    .font(.system(size: 13))
-                    .fontWeight(.semibold)
-
-                Spacer()
-            }
-            .padding(.top)
-
-                VStack{
-                    
-                    Post()
-                    Post()
-                    Post()
-                    Post()
-                    Post()
-                    Post()
-                }
-            }
-       
-            
-
-        
-    }
-}
-struct Post : View{
-    var body: some View{
-        NavigationStack{
-            VStack{
-                HStack(alignment:.top,spacing: 15){
-                    VStack{
-                        Image("news")
-                            .resizable()
-                            .scaledToFit()
-                        
-                        
-                    }
-                    .frame(width: 80,height: 80)
-                    .background(Color.white)
-                    .cornerRadius(15)
-                    
-                    VStack(alignment:.leading,spacing: 11){
-                        HStack{
-                            
-                            NavigationLink(destination: GroupPost()) {
-                                Text("r/worldnews  • u/dinith  • 12h")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 13))
-                                    .opacity(0.5)
-                                
-                            }
-                            
-                            Spacer()
-                            Image(systemName: "ellipsis")
-                                .foregroundColor(.white)
-                                .font(.system(size: 17))
-                                .opacity(0.5)
-                                .padding(.trailing,-20)
-                            
-                        }
-                        Text("Australia to deport Kiwi criminal who has lived there since he was 9.")
-                            .foregroundColor(.white)
-                            .font(.system(size: 17))
-                        
-                        
-                    }
-                    
-                    Spacer()
-                }
-                .padding(.bottom,10)
-                
-                HStack(spacing: 5){
-                    Image(systemName: "message")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
-                        .opacity(0.5)
-                    Text("160")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
-                        .opacity(0.5)
-                    Image(systemName: "bookmark")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
-                        .opacity(0.5)
-                        .padding(.leading)
-                    
-                    Text("Save")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
-                        .opacity(0.5)
-                    Spacer()
-                    Image(systemName: "arrowtriangle.up.circle.fill")
-                        .foregroundColor(Color("LiteBlue"))
-                        .font(.system(size: 14))
-                    Text("209")
-                        .font(.system(size: 14))
-                        .foregroundColor(Color("LiteBlue"))
-                    Image(systemName: "arrowtriangle.down.circle.fill")
-                        .font(.system(size: 14))
-                        .foregroundColor(.white)
-                        .opacity(0.5)
-                    
-                    
-                    
-                    
-                    
-                }
-                .padding(.bottom,15)
-                HStack{
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                    DottedLine()
-                }
-            }
-            .padding(.top,15)
-            .frame(width: 360)
-        }
-        
-    }
-}
 
 struct DottedLine: View{
     var body: some View{

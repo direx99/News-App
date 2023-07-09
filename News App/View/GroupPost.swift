@@ -11,6 +11,7 @@ struct GroupPost: View {
     @State var joinGroup: Bool = false
     @State var moreBtn: Bool = false
     @State var DetailView: Bool = false
+    @StateObject var viewModel:HomeModelView
 
 
     var body: some View {
@@ -29,21 +30,7 @@ struct GroupPost: View {
                             } label: {
                                 Image(systemName: "ellipsis")
                                 
-                                    .sheet(isPresented: $moreBtn) {
-                                        UserView()
-                                            
-                                        
-                                            
-                                            
-                                                           
-                                            
-                                            .presentationDetents([.height(400)])
-
-                                            .presentationCornerRadius(40)
-                                        
-                                            
-                                    }
-                                    
+                                   
 
                                
 
@@ -98,7 +85,7 @@ struct GroupPost: View {
                 .background(Color("Black1"))
                 .padding(.top)
                 .padding(.horizontal,-20)
-                PostFeed()
+                PostFeedView(viewModel: viewModel)
 
                 
                 
@@ -122,7 +109,8 @@ struct GroupPost_Previews: PreviewProvider {
 
     
     static var previews: some View {
-        GroupPost()
+        GroupPost(viewModel: HomeModelView())
+
     }
 }
 struct GroupAbout: View{
