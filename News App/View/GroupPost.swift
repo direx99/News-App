@@ -98,6 +98,7 @@ struct GroupPost: View {
         .padding(.top,10)
         .background(Color(moreBtn ? "dark" : "BgColor"))
         .blur(radius: moreBtn ? 7 : 0.0)
+        .navigationBarHidden(true)
 
     }
 }
