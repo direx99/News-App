@@ -10,6 +10,9 @@ import Kingfisher
 
 struct HomeView: View {
     @StateObject var viewModel:HomeModelView
+    @State private var btnClick:Bool = false
+    @State var groupClick: Bool = false
+
 
 
     var body: some View {
@@ -57,7 +60,7 @@ struct HomeView: View {
                     .padding(.top)
                     .padding(.horizontal,-40)
                     
-                    PostFeedView(viewModel: viewModel)
+                    PostFeedView(viewModel: viewModel, btnClick:$btnClick, groupClick: $groupClick)
                     
                     
                     
@@ -69,10 +72,13 @@ struct HomeView: View {
             }
             .padding(.top)
             .background(Color("BgColor"))
+            .blur(radius: btnClick ? 15 :0)
 
             
             
         }
+        .navigationBarHidden(true)
+
     }
     
 }

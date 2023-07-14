@@ -10,17 +10,27 @@ import Kingfisher
 
 struct PostView: View {
     @Binding var userView: Bool
-
+    @Binding var btnClick: Bool
+    @Binding var groupClick: Bool
+   
+    @Binding var tapme : Bool
     
-        let redditPost : RedditPost
-        @StateObject var viewModel:HomeModelView
-    @State var btnClick:Bool = false
+        var redditPost : RedditPost
+    
+    @StateObject var viewModel: HomeModelView
+
+  
 
         var body: some View{
+          
             NavigationStack{
                 NavigationLink(destination: DetailPost(redditPost: self.redditPost)) {
                    
                     VStack{
+                      
+                        
+
+                       
                         HStack(alignment:.top,spacing: 15){
                             VStack{
                                 //image
@@ -38,7 +48,7 @@ struct PostView: View {
                             VStack(alignment:.leading,spacing: 11){
                                 HStack{
                                     
-                                    NavigationLink(destination: GroupPost( viewModel: viewModel)) {
+                                    NavigationLink(destination: GroupPost( viewModel: viewModel, btnClick: $btnClick, groupClick:$groupClick )) {
                                         Text("r/\(redditPost.community)")
                                             .foregroundColor(.white)
                                             .font(.system(size: 13))
@@ -47,6 +57,7 @@ struct PostView: View {
                                     }
                                     Button{
                                         btnClick = !btnClick
+
 
                                     }label:{
                                         Text("r/\(redditPost.user)")
@@ -136,7 +147,20 @@ struct PostView: View {
                
                 .sheet(isPresented: $btnClick)
                 {
-                    UserView()
+                    
+                    if #available(iOS 16.4, *) {
+                        UserView()
+                        .presentationCornerRadius(40)
+                        .presentationDetents([.height(400)]
+                        )
+                               }
+                    
+                    else{
+                        UserView()
+                        .presentationDetents([.height(400)]
+                        )
+                    }
+                   
                     
                         
                     
@@ -144,10 +168,9 @@ struct PostView: View {
                         
                                        
                         
-                        .presentationDetents([.height(400)])
+                       
                         
                     
-
                     
                         
                 }
@@ -156,11 +179,4 @@ struct PostView: View {
         }
     }
 
-struct PostView_Previews: PreviewProvider {
 
-
-    static var previews: some View {
-        PostView(userView: .constant(false), redditPost: RedditPost(id: "", title: "", community: "", time: "", image: "", comments: 0, likes: 0, user: "", v: 0), viewModel: HomeModelView())
-
-    }
-}

@@ -8,19 +8,15 @@
 import SwiftUI
 
 
-struct PostFeedView: View {
+struct GroupPostFeed: View {
     
-        @StateObject var viewModel:HomeModelView
+        @StateObject var viewModel:GroupPostModelView
        @Binding var btnClick : Bool
     @Binding var groupClick : Bool
-    
-    @State var tapme : Bool = false
 
         @State var userView: Bool = false
         var body: some View{
            VStack{
-               
-               
                 HStack{
                     Image("trend")
                         .resizable()
@@ -42,14 +38,12 @@ struct PostFeedView: View {
 
                     VStack{
                         
-                       
-                            ForEach(viewModel.redditPost){ redditPost in
-                                PostView(userView:$userView, btnClick: $btnClick, groupClick: $groupClick, tapme: $tapme, redditPost: redditPost, viewModel: viewModel)
-                                    
+                        ForEach(viewModel.groupPost){ redditPost in
+                            PostByGroupView(userView: $userView, btnClick: $btnClick, groupPost: redditPost, viewModel: viewModel)
+                                
                                 
                             
                         }
-                        
                         
                        
                     }
@@ -64,7 +58,7 @@ struct PostFeedView: View {
         }
     }
 
-struct PostFeedView_Previews: PreviewProvider {
+struct GroupPostFeed_Previews: PreviewProvider {
     @State  static var btnClick : Bool = false
     @State  static var groupClick : Bool = false
 

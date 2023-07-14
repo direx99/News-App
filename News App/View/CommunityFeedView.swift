@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct PostFeedView: View {
+struct CommunityFeedView: View {
     
         @StateObject var viewModel:HomeModelView
        @Binding var btnClick : Bool
@@ -41,14 +41,12 @@ struct PostFeedView: View {
                 .padding(.top)
 
                     VStack{
-                        
                        
-                            ForEach(viewModel.redditPost){ redditPost in
+                            ForEach(viewModel.topMovingCoins){ redditPost in
                                 PostView(userView:$userView, btnClick: $btnClick, groupClick: $groupClick, tapme: $tapme, redditPost: redditPost, viewModel: viewModel)
                                     
                                 
-                            
-                        }
+                            }
                         
                         
                        
@@ -64,7 +62,7 @@ struct PostFeedView: View {
         }
     }
 
-struct PostFeedView_Previews: PreviewProvider {
+struct CommunityFeedView_Previews: PreviewProvider {
     @State  static var btnClick : Bool = false
     @State  static var groupClick : Bool = false
 
