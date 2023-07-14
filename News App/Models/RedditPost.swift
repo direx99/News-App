@@ -9,8 +9,8 @@
 import Foundation
 
 struct RedditPost: Codable ,Identifiable {
-    let id, title, community, time, image: String
-    let comments, likes: Int?
+    let id, title, community, image: String
+    let comments, likes,time: Int
     let user: String
     let v: Int
 

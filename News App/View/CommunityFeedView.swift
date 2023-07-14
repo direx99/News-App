@@ -42,7 +42,7 @@ struct CommunityFeedView: View {
 
                     VStack{
                        
-                            ForEach(viewModel.topMovingCoins){ redditPost in
+                        ForEach(viewModel.communityPost){ redditPost in
                                 PostView(userView:$userView, btnClick: $btnClick, groupClick: $groupClick, tapme: $tapme, redditPost: redditPost, viewModel: viewModel)
                                     
                                 

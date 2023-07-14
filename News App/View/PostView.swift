@@ -60,11 +60,16 @@ struct PostView: View {
 
 
                                     }label:{
-                                        Text("r/\(redditPost.user)")
+                                        Text("u/\(redditPost.user)")
                                             .foregroundColor(.white)
                                             .font(.system(size: 13))
                                             .opacity(0.5)
                                     }
+                                    
+                                    Text("• \(redditPost.time ?? 0)hrs")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 13))
+                                        .opacity(0.5)
                                     
                                         
                                     
@@ -90,6 +95,7 @@ struct PostView: View {
                         .padding(.bottom,10)
                         
                         HStack(spacing: 5){
+                            
                             Image(systemName: "message")
                                 .foregroundColor(.white)
                                 .font(.system(size: 14))

@@ -21,7 +21,6 @@ struct PostFeedView: View {
         var body: some View{
            VStack{
                
-               
                 HStack{
                     Image("trend")
                         .resizable()
@@ -43,13 +42,30 @@ struct PostFeedView: View {
 
                     VStack{
                         
+                        if(selectedType == "Popular")
                        
-                            ForEach(viewModel.redditPost){ redditPost in
-                                PostView(userView:$userView, btnClick: $btnClick, groupClick: $groupClick, tapme: $tapme, redditPost: redditPost, viewModel: viewModel)
-                                    
+                            {
+                                ForEach(viewModel.popularPost){ redditPost in
+                                    PostView(userView:$userView, btnClick: $btnClick, groupClick: $groupClick, tapme: $tapme, redditPost: redditPost, viewModel: viewModel)
+                                        
+                            }
+                            
+                            
                                 
                             
                         }
+                        else{
+                            
+                                ForEach(viewModel.recentPost){ redditPost in
+                                    PostView(userView:$userView, btnClick: $btnClick, groupClick: $groupClick, tapme: $tapme, redditPost: redditPost, viewModel: viewModel)
+                                        
+                            }
+                            
+                            
+                                
+                            
+                        }
+                        
                         
                         
                        

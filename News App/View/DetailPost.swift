@@ -53,7 +53,7 @@ struct DetailPost_Previews: PreviewProvider {
     
     static var previews: some View {
 
-        DetailPost( redditPost: RedditPost(id: "", title: "", community: "", time: "", image: "", comments: 0, likes: 0, user: "",v: 0))
+        DetailPost( redditPost: RedditPost(id: "", title: "", community: "", image: "", comments: 0, likes: 0, time: 0, user: "",v: 0))
     }
 }
 

@@ -116,6 +116,8 @@ struct GroupPost: View {
             .navigationBarHidden(true)
             
         }
+      
+
     }
 }
 

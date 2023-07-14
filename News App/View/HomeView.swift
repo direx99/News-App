@@ -12,7 +12,7 @@ struct HomeView: View {
     @StateObject var viewModel:HomeModelView
     @State private var btnClick:Bool = false
     @State var groupClick: Bool = false
-    @State var selectedType: String = "Pupular"
+    @State var selectedType: String = "Recent"
 
 
 
@@ -24,7 +24,7 @@ struct HomeView: View {
                 VStack{
                     HStack{
                         VStack(alignment: .leading){
-                            Text("Sunday, July 2nd")
+                            Text("Saturday, July 15th")
                                 .foregroundColor(.white)
                                 .font(.system(size: 13)).fontWeight(.medium)
                                 .opacity(0.5)
@@ -44,11 +44,12 @@ struct HomeView: View {
                     }
                     HStack(spacing: 10){
                         
-                        TypeButton(title: "Pupular", isSelected: selectedType == "Pupular") {
-                                               selectedType = "Pupular"
-                                           }
+                      
                                            TypeButton(title: "Recent", isSelected: selectedType == "Recent") {
                                                selectedType = "Recent"
+                                           }
+                        TypeButton(title: "Popular", isSelected: selectedType == "Popular") {
+                                               selectedType = "Popular"
                                            }
                                            TypeButton(title: "Favorite", isSelected: selectedType == "Favorite") {
                                                selectedType = "Favorite"
@@ -83,6 +84,7 @@ struct HomeView: View {
             
             
         }
+
         .navigationBarHidden(true)
 
     }
