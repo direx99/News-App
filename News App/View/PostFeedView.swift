@@ -13,6 +13,7 @@ struct PostFeedView: View {
         @StateObject var viewModel:HomeModelView
        @Binding var btnClick : Bool
     @Binding var groupClick : Bool
+    @Binding var selectedType : String
     
     @State var tapme : Bool = false
 
@@ -26,7 +27,7 @@ struct PostFeedView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20)
-                    Text("Popular posts")
+                    Text("\(selectedType) posts")
                         .foregroundColor(.white)
                         .font(.system(size: 15)).fontWeight(.medium)
                         .opacity(0.5)
@@ -67,9 +68,10 @@ struct PostFeedView: View {
 struct PostFeedView_Previews: PreviewProvider {
     @State  static var btnClick : Bool = false
     @State  static var groupClick : Bool = false
+    @State  static var selectedType : String = "Popular"
 
     static var previews: some View {
-        PostFeedView(viewModel: HomeModelView(), btnClick: $btnClick, groupClick: $groupClick)
+        PostFeedView(viewModel: HomeModelView(), btnClick: $btnClick, groupClick: $groupClick, selectedType: $selectedType)
     }
 }
 

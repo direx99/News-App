@@ -65,9 +65,10 @@ struct CommunityFeedView: View {
 struct CommunityFeedView_Previews: PreviewProvider {
     @State  static var btnClick : Bool = false
     @State  static var groupClick : Bool = false
+    @State  static var selectedType : String = "Popular"
 
     static var previews: some View {
-        PostFeedView(viewModel: HomeModelView(), btnClick: $btnClick, groupClick: $groupClick)
+        PostFeedView(viewModel: HomeModelView(), btnClick: $btnClick, groupClick: $groupClick, selectedType: $selectedType)
     }
 }
 

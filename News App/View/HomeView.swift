@@ -12,6 +12,7 @@ struct HomeView: View {
     @StateObject var viewModel:HomeModelView
     @State private var btnClick:Bool = false
     @State var groupClick: Bool = false
+    @State var selectedType: String = "Pupular"
 
 
 
@@ -41,13 +42,18 @@ struct HomeView: View {
                             .frame(width: 45)
                             .cornerRadius(50)
                     }
-                    HStack{
+                    HStack(spacing: 10){
                         
-                        NewsTypeSelected()
-                        Spacer()
-                        NewsType()
-                        Spacer()
-                        NewsType()
+                        TypeButton(title: "Pupular", isSelected: selectedType == "Pupular") {
+                                               selectedType = "Pupular"
+                                           }
+                                           TypeButton(title: "Recent", isSelected: selectedType == "Recent") {
+                                               selectedType = "Recent"
+                                           }
+                                           TypeButton(title: "Favorite", isSelected: selectedType == "Favorite") {
+                                               selectedType = "Favorite"
+                                           }
+                                           
                         
                     }
                     .padding(.top,10)
@@ -60,7 +66,7 @@ struct HomeView: View {
                     .padding(.top)
                     .padding(.horizontal,-40)
                     
-                    PostFeedView(viewModel: viewModel, btnClick:$btnClick, groupClick: $groupClick)
+                    PostFeedView(viewModel: viewModel, btnClick:$btnClick, groupClick: $groupClick, selectedType: $selectedType)
                     
                     
                     
@@ -94,28 +100,46 @@ struct HomeView_Previews: PreviewProvider {
 
 struct NewsTypeSelected : View{
     var body: some View{
-        Text("Popular")
         
-            .foregroundColor(.white)
-            .padding(6)
-            .padding(.horizontal,25)
-            .background(Color("Gray"))
-            .cornerRadius(30)
-            .font(.system(size: 14))
-            .fontWeight(.semibold)
+        Button {
+           print("hhh")
+        } label: {
+            Text("Popular")
+            
+                .foregroundColor(.white)
+                .padding(6)
+                .padding(.horizontal,25)
+                .background(Color("Gray"))
+                .cornerRadius(30)
+                .font(.system(size: 14))
+                .fontWeight(.semibold)
+        }
+
+        
+        
     }
+    
 }
 
 struct NewsType : View{
     var body: some View{
-        Text("Recent")
         
-            .foregroundColor(Color("Gray"))
-            .padding(6)
-            .padding(.horizontal,10)
-            .cornerRadius(30)
-            .font(.system(size: 14))
-            .fontWeight(.semibold)
+        Button {
+           print("hhh")
+        } label: {
+            Text("Popular")
+            
+                .foregroundColor(.white)
+                .padding(6)
+                .padding(.horizontal,25)
+                .background(Color("Gray"))
+                .cornerRadius(30)
+                .font(.system(size: 12))
+                .fontWeight(.semibold)
+        }
+
+        
+        
     }
 }
 
@@ -158,3 +182,21 @@ struct DottedLine: View{
 }
 
 
+struct TypeButton: View {
+    var title: String
+    var isSelected: Bool
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 14)).fontWeight(.semibold)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical,7)
+                .font(.headline)
+                .background(isSelected ? Color(hex: "1CAEFD") : Color(hex:"2D2E36"))
+                .foregroundColor(Color.white)
+                .cornerRadius(50)
+        }
+    }
+}
