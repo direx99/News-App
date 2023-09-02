@@ -41,7 +41,7 @@ To clone and run this application, you'll need Xcode
 
 ```bash
 # Clone this repository for mobile app
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+$ git clone https://github.com/direx99/reddit-bionic-client
 
 # Clone this repository for reddit-api 
 $ git clone https://github.com/direx99/reddit-api
